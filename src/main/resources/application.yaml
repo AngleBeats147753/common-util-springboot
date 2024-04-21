@@ -1,0 +1,22 @@
+spring:
+  datasource:
+    driver-class-name: com.p6spy.engine.spy.P6SpyDriver
+    url: jdbc:p6spy:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;MODE=MySQL
+    username: sa
+    password:
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+    date-format: yyyy-MM-dd HH:mm:ss
+  devtools:
+    livereload:
+      enabled: false
+mybatis-plus:
+  configuration:
+    default-enum-type-handler: org.apache.ibatis.type.EnumOrdinalTypeHandler
+    global-config:
+      db-config:
+        logic-delete-value: id # 逻辑已删除值
+        logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
+  optimistic-locking:
+    max-retry-times: 5
