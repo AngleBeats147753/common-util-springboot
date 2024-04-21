@@ -15,7 +15,7 @@ import java.util.HashMap;
  * @author 黄磊
  */
 public class ApplicationManagerTests {
-    private static final Path baseDir = Path.of("application");
+    private static final Path baseDir = Path.of("application/ApplicantManager");
 
     private AnnotationConfigApplicationContext context;
 
@@ -36,7 +36,7 @@ public class ApplicationManagerTests {
     }
 
     private HashMap<String, Object> prepare_getApplication(ArgumentsAccessor args) throws Exception {
-        Path caseDir = baseDir.resolve("application.getApplication").resolve(args.getString(0));
+        Path caseDir = baseDir.resolve("findApplication").resolve(args.getString(0));
 
         // 准备输入
         JSONObject inputParam = TestUtil.getInputParam(caseDir);
