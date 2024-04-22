@@ -9,5 +9,5 @@ public @interface Log {
     /**
      * 接口中文名
      */
-    String value() default "";
+    String value();
 }

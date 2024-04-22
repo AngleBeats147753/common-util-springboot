@@ -10,6 +10,6 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE})
 @Documented
-@Import({LogAOP.class})
+@Import({LogAutoConfiguration.class})
 public @interface EnableLog {
 }

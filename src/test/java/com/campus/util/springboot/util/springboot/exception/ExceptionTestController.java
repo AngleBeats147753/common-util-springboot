@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
  * @author 黄磊
  */
 @RestController
-public class TestController {
+public class ExceptionTestController {
 
     @GetMapping("/exception/methodArgumentTypeMismatchException")
     public ReturnResult methodArgumentTypeMismatchException(Integer param1) {
