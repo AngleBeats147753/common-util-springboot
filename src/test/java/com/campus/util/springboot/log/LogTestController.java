@@ -41,4 +41,11 @@ public class LogTestController {
     public ReturnResult log5() {
         return ReturnResult.getSuccessReturn("成功");
     }
+
+    @Log(value = "日志测试接口6")
+    @PostMapping("/log/log6")
+    public ReturnResult log6() {
+        return ReturnResult.getSuccessReturn("成功");
+    }
+
 }

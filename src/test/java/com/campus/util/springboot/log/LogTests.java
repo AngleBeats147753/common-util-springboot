@@ -48,12 +48,10 @@ public class LogTests {
     private String getLog(ByteArrayOutputStream stream) {
         String log = stream.toString();
 
-        // 使用正则表达式匹配目标信息
-        Pattern pattern = Pattern.compile("c.c.u.s.util.springboot.log.LogAOP\\s+:(.+)");
+        Pattern pattern = Pattern.compile(".*util\\.springboot\\.log\\.LogAOP.*");
         Matcher matcher = pattern.matcher(log);
-
         if (matcher.find()) {
-            return matcher.group(1);
+            return matcher.group(0);
         } else {
             changeToStandardOutStream();
             System.out.println(log);
@@ -122,5 +120,39 @@ public class LogTests {
         ReturnResult returnResult = response.getBody();
         Assertions.assertThat(returnResult.getStatus()).isEqualTo(AliErrorCode.SYSTEM_ERROR_B0001);
         Assertions.assertThat(returnResult.getErrorMessage()).contains("使用了不支持的contentType<application/json;charset=UTF-8>");
+    }
+
+    @Test
+    @DisplayName("自动生成Trace-Id")
+    void test_log5() {
+        ByteArrayOutputStream stream = changeToInnerStream();
+        ResponseEntity<ReturnResult> response = testRestTemplate.getForEntity("/log/log5", ReturnResult.class);
+        changeToStandardOutStream();
+        String log = getLog(stream);
+        System.out.println(log);
+
+        Assertions.assertThat(HttpStatus.OK).isEqualTo(response.getStatusCode());
+        ReturnResult returnResult = response.getBody();
+        Assertions.assertThat(returnResult.getStatus()).isEqualTo(AliErrorCode.SUCCESS);
+        Assertions.assertThat(log).containsPattern("^.*INFO \\[.+].*---.*$");
+    }
+
+    @Test
+    @DisplayName("传递Trace-Id")
+    void test_log6() {
+        HttpHeaders headers = new HttpHeaders();
+        headers.set(TraceIdInterceptor.getHeader(), "123123123123");
+        HttpEntity<String> requestEntity = new HttpEntity<>(null, headers);
+
+        ByteArrayOutputStream stream = changeToInnerStream();
+        ResponseEntity<ReturnResult> response = testRestTemplate.postForEntity("/log/log6", requestEntity, ReturnResult.class);
+        changeToStandardOutStream();
+        String log = getLog(stream);
+        System.out.println(log);
+
+        Assertions.assertThat(HttpStatus.OK).isEqualTo(response.getStatusCode());
+        ReturnResult returnResult = response.getBody();
+        Assertions.assertThat(returnResult.getStatus()).isEqualTo(AliErrorCode.SUCCESS);
+        Assertions.assertThat(log).containsPattern("^.*INFO \\[123123123123].*---.*$");
     }
 }

@@ -5,6 +5,7 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
 import java.io.*;
+import java.util.List;
 
 /**
  * 使请求体可重复读取的过滤器
@@ -14,15 +15,24 @@ import java.io.*;
 @WebFilter(urlPatterns = "/*")
 public class ReReadableRequestFilter implements Filter {
 
+    private static final List<String> supportedContentTypes = List.of("application/json");
+
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
-        if (request instanceof HttpServletRequest && "application/json".equals(request.getContentType())) {
+        if (needReReadable(request)) {
             ReReadableHttpServletRequestWrapper wrappedRequest = new ReReadableHttpServletRequestWrapper((HttpServletRequest) request);
             chain.doFilter(wrappedRequest, response);
         } else {
             chain.doFilter(request, response);
         }
+    }
+
+    private boolean needReReadable(ServletRequest request) {
+        if (request.getContentType() == null) {
+            return false;
+        }
+        return request instanceof HttpServletRequest && supportedContentTypes.contains(request.getContentType());
     }
 
     public static class ReReadableHttpServletRequestWrapper extends HttpServletRequestWrapper {
