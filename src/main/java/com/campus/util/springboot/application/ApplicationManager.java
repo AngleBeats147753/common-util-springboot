@@ -1,6 +1,8 @@
 package com.campus.util.springboot.application;
 
 /**
+ * 获取应用信息的接口
+ *
  * @author 黄磊
  */
 public interface ApplicationManager {
