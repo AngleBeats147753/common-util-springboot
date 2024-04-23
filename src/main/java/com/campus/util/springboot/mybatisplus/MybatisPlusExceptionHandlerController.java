@@ -1,4 +1,4 @@
-package com.campus.util.springboot.mybatisplus.exception;
+package com.campus.util.springboot.mybatisplus;
 
 import com.baomidou.mybatisplus.core.exceptions.MybatisPlusException;
 import com.campus.util.springboot.exception.ErrorMessage;

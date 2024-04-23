@@ -1,15 +1,17 @@
-package com.campus.util.springboot.mybatisplus;
+package com.campus.util.springboot.enums.named;
 
 import org.springframework.context.annotation.Import;
 
 import java.lang.annotation.*;
 
 /**
+ * 开启枚举名称自动转换
+ *
  * @author 黄磊
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE})
 @Documented
-@Import(MybatisPlusAutoConfiguration.class)
-public @interface EnableMybatisPlus {
+@Import({NamedEnumAutoConfiguration.class})
+public @interface EnableNamedEnum {
 }

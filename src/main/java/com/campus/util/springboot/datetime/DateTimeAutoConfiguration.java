@@ -66,8 +66,8 @@ public class DateTimeAutoConfiguration implements WebMvcConfigurer {
 
     @Override
     public void addFormatters(FormatterRegistry registry) {
-        registry.addConverter(new StringToLocalDateTimeConverter("yyyy-MM-dd HH:mm:ss"));
-        registry.addConverter(new StringToLocalDateConverter("yyyy-MM-dd"));
-        registry.addConverter(new StringToLocalTimeConverter("HH:mm:ss"));
+        registry.addConverter(new StringToLocalDateTimeConverter(DEFAULT_DATE_TIME_FORMAT));
+        registry.addConverter(new StringToLocalDateConverter(DEFAULT_DATE_FORMAT));
+        registry.addConverter(new StringToLocalTimeConverter(DEFAULT_TIME_FORMAT));
     }
 }
