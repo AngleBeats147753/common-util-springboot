@@ -15,7 +15,7 @@ import java.util.List;
 @WebFilter(urlPatterns = "/*")
 public class ReReadableRequestFilter implements Filter {
 
-    private static final List<String> supportedContentTypes = List.of("application/json");
+    private static final List<String> supportedContentTypes = List.of("application/json", "application/json;charset=UTF-8");
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)

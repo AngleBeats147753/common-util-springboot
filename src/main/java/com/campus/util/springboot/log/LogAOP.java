@@ -146,9 +146,11 @@ public class LogAOP {
         String contentType = request.getContentType();
         if (request.getContentType() == null && request.getContentLength() == -1) {
             return "无";
-        } else if ("application/json".equals(contentType)) {
+        } else if ("application/json".equals(contentType) ||
+                "application/json;charset=UTF-8".equals(contentType)) {
             return LogUtil.maskPrivacyData(ServletUtil.getBody(request));
         } else if ("application/x-www-form-urlencoded".equals(contentType) ||
+                "application/x-www-form-urlencoded;charset=UTF-8".equals(contentType) ||
                 "application/octet-stream".equals(contentType) ||
                 "multipart/form-data".equals(contentType) ||
                 "application/xml".equals(contentType) ||
