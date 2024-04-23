@@ -6,7 +6,7 @@ import com.campus.util.springboot.enums.named.NamedEnum;
 import java.io.Serializable;
 
 /**
- * 同时继承了 IEnum 和 NameEnum 的枚举接口。允许从客户端根据中文获取枚举，然后在数据库中存储为tinyint
+ * 从客户端根据名称获取枚举，然后在数据库中使用其他类型存储
  *
  * @author 黄磊
  */
