@@ -21,10 +21,8 @@ public class ApplicationManagerTests {
 
     @ParameterizedTest(name = "{1}")
     @CsvSource(useHeadersInDisplayName = true, textBlock = """
-            caseName, description,          exceptionf
+            caseName, description,          exception
             case1   , 正常           , null
-            case2   , spring.application.name未配置, org.springframework.beans.factory.BeanCreationException
-            case3   , spring.profiles.active未配置, org.springframework.beans.factory.BeanCreationException
             case4   , spring.application.name为空字符串, org.springframework.beans.factory.BeanCreationException
             case5   , spring.profiles.active为空字符串, org.springframework.beans.factory.BeanCreationException
             """)

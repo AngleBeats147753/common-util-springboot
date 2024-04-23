@@ -111,15 +111,15 @@ public class LogTests {
     @DisplayName("测试会抛出异常Content-Type")
     void test_log4() {
         HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
-        HttpEntity<String> requestEntity = new HttpEntity<>("param1=111", headers);
+        headers.setContentType(MediaType.parseMediaType("application/aaa"));
+        HttpEntity<String> requestEntity = new HttpEntity<>("{\"param1\":\"111\"}", headers);
 
         ResponseEntity<ReturnResult> response = testRestTemplate.postForEntity("/log/log4", requestEntity, ReturnResult.class);
 
         Assertions.assertThat(HttpStatus.OK).isEqualTo(response.getStatusCode());
         ReturnResult returnResult = response.getBody();
         Assertions.assertThat(returnResult.getStatus()).isEqualTo(AliErrorCode.SYSTEM_ERROR_B0001);
-        Assertions.assertThat(returnResult.getErrorMessage()).contains("使用了不支持的contentType<application/json;charset=UTF-8>");
+        Assertions.assertThat(returnResult.getErrorMessage()).contains("使用了不支持的contentType<application/aaa>，路径</log/log4>");
     }
 
     @Test

@@ -12,6 +12,7 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
+import org.springframework.core.annotation.Order;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -19,8 +20,12 @@ import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Method;
 import java.util.Map;
 
+/**
+ * Order(1)不要去掉，因为这个AOP要在其他AOP之前执行
+ */
 @Aspect
 @Slf4j
+@Order(1)
 public class LogAOP {
     private static final String LOG_TEMPLATE = "[{}] 请求方式：{}， 请求路径：{}， 接口名：{}， 用户Id：{}， 异常信息：{}， 请求参数：{}， 请求体类型：{}，请求体：{}";
     private final Boolean hasSaToken;
