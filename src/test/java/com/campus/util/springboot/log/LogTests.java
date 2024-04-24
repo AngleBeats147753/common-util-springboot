@@ -62,8 +62,6 @@ public class LogTests {
     @Test
     @DisplayName("测试Param参数正常显示")
     void test_log1() {
-        System.out.println("~~~~~~~~~");
-        System.out.println("你好呀");
         ByteArrayOutputStream stream = changeToInnerStream();
         ResponseEntity<ReturnResult> response = testRestTemplate.getForEntity("/log/log1?param1=111", ReturnResult.class);
         changeToStandardOutStream();
