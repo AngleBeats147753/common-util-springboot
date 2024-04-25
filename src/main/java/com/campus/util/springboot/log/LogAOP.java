@@ -39,7 +39,7 @@ public class LogAOP {
             hasSaToken = true;
             getLoginIdAsString = stpUtilClass.getMethod("getLoginId", Object.class);
         } catch (Exception e) {
-            log.info("未找到SaToken，日志将无法获取用户Id");
+            log.debug("未找到SaToken，日志将无法获取用户Id");
         }
         this.hasSaToken = hasSaToken;
         this.getLoginIdAsString = getLoginIdAsString;
