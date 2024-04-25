@@ -18,7 +18,7 @@
         <hutool.version>5.8.25</hutool.version>
         <mybatis.plus.version>3.5.3.1</mybatis.plus.version>
         <satoken.version>1.37.0</satoken.version>
-        <eggcampus.common.util.version>0.2-SNAPSHOT</eggcampus.common.util.version>
+        <eggcampus.common.util.version>0.2.1-SNAPSHOT</eggcampus.common.util.version>
     </properties>
 
     <dependencyManagement>
@@ -94,7 +94,7 @@
 
         <dependency>
             <groupId>com.eggcampus.util</groupId>
-            <artifactId>common-util</artifactId>
+            <artifactId>util-base</artifactId>
             <version>${eggcampus.common.util.version}</version>
         </dependency>
 
