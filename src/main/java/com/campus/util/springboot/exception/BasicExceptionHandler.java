@@ -40,6 +40,7 @@ public class BasicExceptionHandler {
     @ExceptionHandler(value = {MethodArgumentTypeMismatchException.class, MissingServletRequestParameterException.class,
             HttpMessageNotReadableException.class, HttpMessageConversionException.class})
     public ReturnResult handlePropertyAccessException(Exception e) {
+        log.debug("输入的参数有问题", e);
         return ReturnResult.getFailureReturn(USER_ERROR_A0400, "输入的参数有问题", e.getLocalizedMessage());
     }
 
@@ -58,6 +59,7 @@ public class BasicExceptionHandler {
                 stringBuilder.append(error.getField()).append(" : ").append(error.getDefaultMessage()).append("\n");
             }
         });
+        log.debug("输入的参数有问题", e);
         return ReturnResult.getFailureReturn(USER_ERROR_A0400, stringBuilder.toString());
     }
 

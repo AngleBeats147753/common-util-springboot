@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
  * @author 黄磊
  */
 @Slf4j
-@Order(1)
+@Order(999)
 @RestControllerAdvice
 public class MybatisPlusExceptionHandlerController {
     /**
@@ -34,19 +34,19 @@ public class MybatisPlusExceptionHandlerController {
      */
     @ExceptionHandler(value = NotFoundException.class)
     public ReturnResult handleNotFoundException(NotFoundException e) {
-        log.warn(e.getLocalizedMessage());
+        log.debug("未找到数据", e);
         return ReturnResult.getFailureReturn(AliErrorCode.USER_ERROR_A0402, e.getLocalizedMessage());
     }
 
     @ExceptionHandler(value = DatabaseException.class)
-    public ReturnResult handleEggCampusException(EggCampusException e) {
-        log.error("数据库出现异常", e);
+    public ReturnResult handleDatabaseException(EggCampusException e) {
+        log.error("操作数据库异常", e);
         return ReturnResult.getFailureReturn(AliErrorCode.SYSTEM_ERROR_B0001, ErrorMessage.UNKNOWN_TIP, e.getLocalizedMessage());
     }
 
     @ExceptionHandler(value = MybatisPlusException.class)
     public ReturnResult handleMybatisPlusException(MybatisPlusException e) {
-        log.error("数据库执行出错", e);
+        log.error("操作数据库异常", e);
         return ReturnResult.getFailureReturn(AliErrorCode.SYSTEM_ERROR_B0001, e.getLocalizedMessage(), e.getLocalizedMessage());
     }
 }
