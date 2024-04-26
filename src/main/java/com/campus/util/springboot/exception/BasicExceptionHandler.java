@@ -80,7 +80,8 @@ public class BasicExceptionHandler {
      */
     @ExceptionHandler(value = {NonLoggingManagerException.class, NonLoggingServiceException.class})
     public ReturnResult handleNonReturnResultException(ReturnResultException e) {
-        return ReturnResult.getFailureReturn(e.getCode(), e.getMessage(), e.getErrorMessage());
+        log.debug("发生业务错误", e);
+        return ReturnResult.getFailureReturn(e.getCode(), e.getUserTip(), e.getErrorMessage());
     }
 
     /**
@@ -88,8 +89,8 @@ public class BasicExceptionHandler {
      */
     @ExceptionHandler(value = ReturnResultException.class)
     public ReturnResult handleReturnResultException(ReturnResultException e) {
-        log.error("发生未知错误", e);
-        return ReturnResult.getFailureReturn(e.getCode(), e.getMessage(), e.getErrorMessage());
+        log.error("发生业务错误", e);
+        return ReturnResult.getFailureReturn(e.getCode(), e.getUserTip(), e.getErrorMessage());
     }
 
     /**
