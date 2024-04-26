@@ -53,8 +53,12 @@ public class LogAOP {
     public Object run(ProceedingJoinPoint joinPoint) throws Throwable {
         LogMessage message = getRequestMessage(joinPoint);
         try {
-            ReturnResult result = (ReturnResult) joinPoint.proceed(joinPoint.getArgs());
-            fillResponseMessage(message, result);
+            Object result = joinPoint.proceed(joinPoint.getArgs());
+            if (result instanceof ReturnResult) {
+                fillResponseMessage(message, (ReturnResult) result);
+            } else {
+                fillResponseMessage(message);
+            }
             return result;
         } catch (Throwable e) {
             fillResponseMessage(message, e);
@@ -86,6 +90,7 @@ public class LogAOP {
         return message;
     }
 
+
     private void fillResponseMessage(LogMessage message, ReturnResult result) {
         if (result.getStatus() == AliErrorCode.SUCCESS) {
             message.setStatus("成功");
@@ -93,6 +98,10 @@ public class LogAOP {
             message.setStatus("失败");
             message.setErrorMessage(result.getMessage());
         }
+    }
+
+    private void fillResponseMessage(LogMessage message) {
+        message.setStatus("未知");
     }
 
     private void fillResponseMessage(LogMessage message, Throwable e) {
