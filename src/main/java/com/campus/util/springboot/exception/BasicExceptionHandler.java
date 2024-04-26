@@ -1,5 +1,8 @@
 package com.campus.util.springboot.exception;
 
+import com.eggcampus.util.exception.result.NonLoggingManagerException;
+import com.eggcampus.util.exception.result.NonLoggingServiceException;
+import com.eggcampus.util.exception.result.ReturnResultException;
 import com.eggcampus.util.result.AliErrorCode;
 import com.eggcampus.util.result.ReturnResult;
 import lombok.extern.slf4j.Slf4j;
@@ -70,6 +73,23 @@ public class BasicExceptionHandler {
     public ReturnResult handleRejectedExecutionException(RejectedExecutionException e) {
         log.error("线程池队列溢出", e);
         return ReturnResult.getFailureReturn(AliErrorCode.SYSTEM_ERROR_B0315, "系统繁忙中，请10分钟后再尝试", e.getMessage());
+    }
+
+    /**
+     * 处理无需记录日志的ReturnResultException异常
+     */
+    @ExceptionHandler(value = {NonLoggingManagerException.class, NonLoggingServiceException.class})
+    public ReturnResult handleNonReturnResultException(ReturnResultException e) {
+        return ReturnResult.getFailureReturn(e.getCode(), e.getMessage(), e.getErrorMessage());
+    }
+
+    /**
+     * 处理需要记录日志的ReturnResultException异常
+     */
+    @ExceptionHandler(value = ReturnResultException.class)
+    public ReturnResult handleReturnResultException(ReturnResultException e) {
+        log.error("发生未知错误", e);
+        return ReturnResult.getFailureReturn(e.getCode(), e.getMessage(), e.getErrorMessage());
     }
 
     /**
