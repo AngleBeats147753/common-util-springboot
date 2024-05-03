@@ -27,7 +27,7 @@ import java.util.Map;
 @Slf4j
 @Order(1)
 public class LogAOP {
-    private static final String LOG_TEMPLATE = "[{}] 请求方式：{}， 请求路径：{}， 接口名：{}， 用户Id：{}， 异常信息：{}， 请求参数：{}， 请求体类型：{}，请求体：{}";
+    private static final String LOG_TEMPLATE = "[{}] 耗时：{}秒 ，请求方式：{}， 请求路径：{}， 接口名：{}， 用户Id：{}，异常信息：{}， 请求参数：{}， 请求体类型：{}，请求体：{}";
     private final Boolean hasSaToken;
     private final Method getLoginIdAsString;
 
@@ -51,6 +51,7 @@ public class LogAOP {
 
     @Around(value = "logPointcut()")
     public Object run(ProceedingJoinPoint joinPoint) throws Throwable {
+        long start = System.currentTimeMillis();
         LogMessage message = getRequestMessage(joinPoint);
         try {
             Object result = joinPoint.proceed(joinPoint.getArgs());
@@ -64,8 +65,14 @@ public class LogAOP {
             fillResponseMessage(message, e);
             throw e;
         } finally {
+            long end = System.currentTimeMillis();
+            double total = (end - start) / 1000.0;
+            if (total > 3.0) {
+                log.warn("接口耗时过长，耗时：{}秒", total);
+            }
             log.info(LOG_TEMPLATE,
                     message.getStatus(),
+                    total,
                     message.getMethod(),
                     message.getUri(),
                     message.getName(),
@@ -158,7 +165,7 @@ public class LogAOP {
 
     private String getBody(HttpServletRequest request) {
         String contentType = request.getContentType();
-        if (request.getContentType() == null && request.getContentLength() == -1) {
+        if (request.getContentType() == null && (request.getContentLength() == -1 || request.getContentLength() == 0)) {
             return "无";
         } else if ("application/json".equals(contentType) ||
                 "application/json;charset=UTF-8".equals(contentType)) {
