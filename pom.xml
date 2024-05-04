@@ -20,6 +20,7 @@
         <hutool.version>5.8.25</hutool.version>
         <mybatis.plus.version>3.5.3.1</mybatis.plus.version>
         <satoken.version>1.37.0</satoken.version>
+        <seata.version>2.0.0</seata.version>
         <eggcampus.common.util.version>0.2.1-SNAPSHOT</eggcampus.common.util.version>
     </properties>
 
@@ -145,6 +146,14 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>io.seata</groupId>
+            <artifactId>seata-spring-boot-starter</artifactId>
+            <version>${seata.version}</version>
+            <optional>true</optional>
         </dependency>
     </dependencies>
 
