@@ -141,7 +141,7 @@ public class LogTests {
     @DisplayName("传递Trace-Id")
     void test_log6() {
         HttpHeaders headers = new HttpHeaders();
-        headers.set(TraceIdInterceptor.getHeader(), "123123123123");
+        headers.set(TraceIdUtil.HEADER_NAME, "123123123123");
         HttpEntity<String> requestEntity = new HttpEntity<>(null, headers);
 
         ByteArrayOutputStream stream = changeToInnerStream();

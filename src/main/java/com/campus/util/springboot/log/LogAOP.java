@@ -67,9 +67,6 @@ public class LogAOP {
         } finally {
             long end = System.currentTimeMillis();
             double total = (end - start) / 1000.0;
-            if (total > 3.0) {
-                log.warn("接口耗时过长，耗时：{}秒", total);
-            }
             log.info(LOG_TEMPLATE,
                     message.getStatus(),
                     total,
@@ -81,6 +78,9 @@ public class LogAOP {
                     message.getParams(),
                     message.getContentType(),
                     message.getBody());
+            if (total > 3.0) {
+                log.warn("接口耗时过长，耗时：{}秒", total);
+            }
         }
     }
 

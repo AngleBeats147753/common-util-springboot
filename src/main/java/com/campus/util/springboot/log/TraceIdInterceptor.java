@@ -1,7 +1,5 @@
 package com.campus.util.springboot.log;
 
-import cn.hutool.core.util.IdUtil;
-import lombok.Getter;
 import org.slf4j.MDC;
 import org.springframework.web.servlet.HandlerInterceptor;
 
@@ -17,20 +15,11 @@ import javax.servlet.http.HttpServletResponse;
  * @author 黄磊
  */
 public class TraceIdInterceptor implements HandlerInterceptor {
-    @Getter
-    private static final String NAME = "traceId";
-    @Getter
-    private static final String Header = "Trace-Id";
-
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
-        String traceId = request.getHeader(Header);
-        if (traceId == null) {
-            traceId = IdUtil.randomUUID();
-        }
-        MDC.put(NAME, traceId);
-        response.setHeader(Header, traceId);
+        String traceId = TraceIdUtil.getTraceId(request);
+        MDC.put(TraceIdUtil.MDC_NAME, traceId);
+        response.setHeader(TraceIdUtil.HEADER_NAME, traceId);
         return true;
     }
-
 }
