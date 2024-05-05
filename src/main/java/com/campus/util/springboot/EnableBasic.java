@@ -1,7 +1,7 @@
 package com.campus.util.springboot;
 
 
-import com.campus.util.springboot.application.EnableApplicationManager;
+import com.campus.util.springboot.application.EnableEggCampusApplication;
 import com.campus.util.springboot.datetime.EnableDateTimeConverter;
 import com.campus.util.springboot.enums.named.EnableNamedEnum;
 import com.campus.util.springboot.exception.EnableExceptionHandler;
@@ -16,7 +16,7 @@ import java.lang.annotation.*;
 @EnableNamedEnum
 @EnableDateTimeConverter
 @EnableExceptionHandler
-@EnableApplicationManager
+@EnableEggCampusApplication
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE})
 @Documented

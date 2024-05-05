@@ -1,0 +1,5 @@
+{
+  "eggcampus.application.serviceName": "oms",
+  "eggcampus.application.profile": "dev",
+  "spring.profiles.active": "spring.profile"
+}

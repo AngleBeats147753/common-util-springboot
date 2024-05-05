@@ -1,0 +1,6 @@
+{
+  "eggcampus.application.projectName": "dada",
+  "eggcampus.application.serviceName": "oms",
+  "eggcampus.application.profile": "dev",
+  "spring.application.name": "spring.name"
+}
