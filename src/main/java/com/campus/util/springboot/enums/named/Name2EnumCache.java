@@ -16,11 +16,13 @@ public class Name2EnumCache {
         if (NAME_2_ENUM_MAP.containsKey(enumClass.getName())) {
             return;
         }
-        HashMap<String, NamedEnum> map = new HashMap<>();
-        for (NamedEnum namedEnum : enumClass.getEnumConstants()) {
-            map.put(namedEnum.getName(), namedEnum);
-        }
-        NAME_2_ENUM_MAP.put(enumClass.getName(), map);
+        NAME_2_ENUM_MAP.computeIfAbsent(enumClass.getName(), key -> {
+            HashMap<String, NamedEnum> map = new HashMap<>();
+            for (NamedEnum namedEnum : enumClass.getEnumConstants()) {
+                map.put(namedEnum.getName(), namedEnum);
+            }
+            return map;
+        });
     }
 
     public static NamedEnum get(Class<? extends NamedEnum> enumClass, String name) {
