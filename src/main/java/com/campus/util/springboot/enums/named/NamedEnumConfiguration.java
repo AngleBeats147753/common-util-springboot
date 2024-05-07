@@ -6,7 +6,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 /**
  * @author 黄磊
  */
-public class NamedEnumAutoConfiguration implements WebMvcConfigurer {
+public class NamedEnumConfiguration implements WebMvcConfigurer {
     @Override
     public void addFormatters(FormatterRegistry registry) {
         registry.addConverterFactory(new StringToNamedEnumConverterFactory());

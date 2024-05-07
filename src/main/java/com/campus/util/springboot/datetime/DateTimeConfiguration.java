@@ -31,7 +31,7 @@ import java.time.format.DateTimeFormatter;
  *
  * @author 黄磊
  */
-public class DateTimeAutoConfiguration implements WebMvcConfigurer {
+public class DateTimeConfiguration implements WebMvcConfigurer {
 
     /**
      * 默认日期时间格式

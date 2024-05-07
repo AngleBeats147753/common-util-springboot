@@ -10,6 +10,6 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE})
 @Documented
-@Import(MybatisPlusAutoConfiguration.class)
+@Import(MybatisPlusConfiguration.class)
 public @interface EnableMybatisPlus {
 }

@@ -1,7 +1,7 @@
 package com.campus.util.springboot.test.application;
 
 import cn.hutool.json.JSONObject;
-import com.campus.util.springboot.application.EggCampusApplicationAutoConfiguration;
+import com.campus.util.springboot.application.EggCampusApplicationConfiguration;
 import com.campus.util.springboot.application.EggCampusApplicationDTO;
 import com.campus.util.springboot.application.EggCampusApplicationManager;
 import com.eggcampus.util.test.TestUtil;
@@ -82,7 +82,7 @@ public class EggCampusApplicationManagerTests {
 
     private Object execute_getApplication(Object exception) {
         return TestUtil.execute(null, exception, (param -> {
-            context.register(EggCampusApplicationAutoConfiguration.class);
+            context.register(EggCampusApplicationConfiguration.class);
             context.refresh();
             EggCampusApplicationManager eggcampusApplicationManager = this.context.getBean(EggCampusApplicationManager.class);
             return eggcampusApplicationManager.getApplication();

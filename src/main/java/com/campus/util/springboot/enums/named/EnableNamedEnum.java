@@ -12,6 +12,6 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE})
 @Documented
-@Import({NamedEnumAutoConfiguration.class})
+@Import({NamedEnumConfiguration.class})
 public @interface EnableNamedEnum {
 }

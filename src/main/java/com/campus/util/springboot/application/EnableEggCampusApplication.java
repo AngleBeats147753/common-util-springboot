@@ -15,6 +15,6 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE})
 @Documented
-@Import({EggCampusApplicationAutoConfiguration.class})
+@Import({EggCampusApplicationConfiguration.class})
 public @interface EnableEggCampusApplication {
 }

@@ -10,6 +10,6 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE})
 @Documented
-@Import(FeignAutoConfiguration.class)
+@Import(FeignConfiguration.class)
 public @interface EnableFeign {
 }

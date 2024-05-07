@@ -13,7 +13,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Slf4j
 @Configuration
 @Import({LogAOP.class, ReReadableRequestFilter.class})
-public class LogAutoConfiguration implements WebMvcConfigurer {
+public class LogConfiguration implements WebMvcConfigurer {
     // 用于提醒要将logging.pattern.level设置为'%5p [%X{traceId}]'
     @Value("${logging.pattern.level}")
     private String logPatternLevel;

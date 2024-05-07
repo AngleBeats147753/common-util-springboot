@@ -10,6 +10,6 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE})
 @Documented
-@Import(SeataAutoConfiguration.class)
+@Import(SeataConfiguration.class)
 public @interface EnableSeata {
 }

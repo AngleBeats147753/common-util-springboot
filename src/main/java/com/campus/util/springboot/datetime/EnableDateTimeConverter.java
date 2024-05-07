@@ -10,6 +10,6 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE})
 @Documented
-@Import({DateTimeAutoConfiguration.class})
+@Import({DateTimeConfiguration.class})
 public @interface EnableDateTimeConverter {
 }

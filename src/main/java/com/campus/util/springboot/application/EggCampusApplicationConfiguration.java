@@ -17,7 +17,7 @@ import javax.annotation.Resource;
 @Slf4j
 @Component
 @EnableConfigurationProperties(EggCampusApplicationProperties.class)
-public class EggCampusApplicationAutoConfiguration implements EnvironmentAware {
+public class EggCampusApplicationConfiguration implements EnvironmentAware {
     @Resource
     private EggCampusApplicationProperties eggCampusApplicationProperties;
     private Environment environment;

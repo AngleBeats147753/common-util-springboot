@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 @Slf4j
 @Configuration
 @EnableFeign
-public class SeataAutoConfiguration implements WebMvcConfigurer {
+public class SeataConfiguration implements WebMvcConfigurer {
     @Bean
     public RequestInterceptor seataIdRequestInterceptor() {
         return new SeataIdRequestInterceptor();

@@ -29,7 +29,7 @@ import java.lang.reflect.Type;
 @Configuration
 @EnableFeignClients
 @Import(FeignExceptionHandlerController.class)
-public class FeignAutoConfiguration {
+public class FeignConfiguration {
     @Resource
     private ObjectMapper objectMapper;
 
