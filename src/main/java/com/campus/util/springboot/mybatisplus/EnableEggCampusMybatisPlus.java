@@ -11,5 +11,5 @@ import java.lang.annotation.*;
 @Target({ElementType.TYPE})
 @Documented
 @Import(MybatisPlusConfiguration.class)
-public @interface EnableMybatisPlus {
+public @interface EnableEggCampusMybatisPlus {
 }

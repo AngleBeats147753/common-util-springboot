@@ -1,6 +1,6 @@
 package com.campus.util.springboot.test.exception;
 
-import com.campus.util.springboot.exception.EnableExceptionHandler;
+import com.campus.util.springboot.exception.EnableEggCampusExceptionHandler;
 import com.eggcampus.util.result.ReturnResult;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -15,7 +15,7 @@ import org.springframework.http.*;
  * @author 黄磊
  */
 @SuppressWarnings("DataFlowIssue")
-@EnableExceptionHandler
+@EnableEggCampusExceptionHandler
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @Import(ExceptionTestController.class)
 public class ExceptionTests {

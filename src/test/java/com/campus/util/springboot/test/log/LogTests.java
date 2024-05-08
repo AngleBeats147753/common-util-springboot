@@ -1,7 +1,7 @@
 package com.campus.util.springboot.test.log;
 
-import com.campus.util.springboot.exception.EnableExceptionHandler;
-import com.campus.util.springboot.log.EnableLog;
+import com.campus.util.springboot.exception.EnableEggCampusExceptionHandler;
+import com.campus.util.springboot.log.EnableEggCampusLog;
 import com.campus.util.springboot.log.TraceIdUtil;
 import com.eggcampus.util.result.AliErrorCode;
 import com.eggcampus.util.result.ReturnResult;
@@ -23,8 +23,8 @@ import java.util.regex.Pattern;
  * @author 黄磊
  */
 @SuppressWarnings("DataFlowIssue")
-@EnableLog
-@EnableExceptionHandler
+@EnableEggCampusLog
+@EnableEggCampusExceptionHandler
 @SpringBootTest(properties = "logging.pattern.level=%5p [%X{traceId}]",
         webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @Import(LogTestController.class)

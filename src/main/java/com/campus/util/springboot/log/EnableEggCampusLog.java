@@ -1,4 +1,4 @@
-package com.campus.util.springboot.satoken;
+package com.campus.util.springboot.log;
 
 import org.springframework.context.annotation.Import;
 
@@ -10,6 +10,6 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE})
 @Documented
-@Import({SaTokenExceptionHandlerController.class})
-public @interface EnableSaToke {
+@Import({LogConfiguration.class})
+public @interface EnableEggCampusLog {
 }

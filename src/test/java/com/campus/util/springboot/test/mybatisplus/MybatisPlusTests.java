@@ -1,7 +1,7 @@
 package com.campus.util.springboot.test.mybatisplus;
 
 import cn.hutool.json.JSONUtil;
-import com.campus.util.springboot.mybatisplus.EnableMybatisPlus;
+import com.campus.util.springboot.mybatisplus.EnableEggCampusMybatisPlus;
 import com.campus.util.springboot.mybatisplus.PageDTO;
 import com.campus.util.springboot.mybatisplus.PageUtil;
 import org.assertj.core.api.Assertions;
@@ -24,7 +24,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @author 黄磊
  */
 @Import(DataSourceAutoConfiguration.class)
-@EnableMybatisPlus
+@EnableEggCampusMybatisPlus
 @AutoConfigureMockMvc
 @SpringBootTest(properties = {
         "spring.datasource.url=jdbc:p6spy:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;MODE=MySQL",

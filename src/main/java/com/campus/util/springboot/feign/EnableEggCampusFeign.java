@@ -11,5 +11,5 @@ import java.lang.annotation.*;
 @Target({ElementType.TYPE})
 @Documented
 @Import(FeignConfiguration.class)
-public @interface EnableFeign {
+public @interface EnableEggCampusFeign {
 }

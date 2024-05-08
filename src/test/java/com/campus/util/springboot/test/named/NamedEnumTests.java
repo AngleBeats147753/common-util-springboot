@@ -1,6 +1,7 @@
 package com.campus.util.springboot.test.named;
 
-import com.campus.util.springboot.enums.named.EnableNamedEnum;
+import com.campus.util.springboot.enums.named.EnableEggCampusNamedEnum;
+import com.campus.util.springboot.exception.EnableEggCampusExceptionHandler;
 import com.eggcampus.util.result.AliErrorCode;
 import com.eggcampus.util.result.ReturnResult;
 import org.assertj.core.api.Assertions;
@@ -18,7 +19,8 @@ import java.util.Map;
  * @author 黄磊
  */
 @SuppressWarnings("DataFlowIssue")
-@EnableNamedEnum
+@EnableEggCampusNamedEnum
+@EnableEggCampusExceptionHandler
 @Import(NamedEnumController.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class NamedEnumTests {

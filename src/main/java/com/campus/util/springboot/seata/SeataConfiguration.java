@@ -1,6 +1,6 @@
 package com.campus.util.springboot.seata;
 
-import com.campus.util.springboot.feign.EnableFeign;
+import com.campus.util.springboot.feign.EnableEggCampusFeign;
 import feign.RequestInterceptor;
 import feign.RequestTemplate;
 import lombok.extern.slf4j.Slf4j;
@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @Slf4j
 @Configuration
-@EnableFeign
+@EnableEggCampusFeign
 public class SeataConfiguration implements WebMvcConfigurer {
     @Bean
     public RequestInterceptor seataIdRequestInterceptor() {

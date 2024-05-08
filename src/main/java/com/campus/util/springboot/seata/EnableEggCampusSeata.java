@@ -1,17 +1,15 @@
-package com.campus.util.springboot.enums.named;
+package com.campus.util.springboot.seata;
 
 import org.springframework.context.annotation.Import;
 
 import java.lang.annotation.*;
 
 /**
- * 开启枚举名称自动转换
- *
  * @author 黄磊
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE})
 @Documented
-@Import({NamedEnumConfiguration.class})
-public @interface EnableNamedEnum {
+@Import(SeataConfiguration.class)
+public @interface EnableEggCampusSeata {
 }

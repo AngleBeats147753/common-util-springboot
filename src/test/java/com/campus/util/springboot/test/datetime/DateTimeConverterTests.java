@@ -1,6 +1,6 @@
 package com.campus.util.springboot.test.datetime;
 
-import com.campus.util.springboot.datetime.EnableDateTimeConverter;
+import com.campus.util.springboot.datetime.EnableEggCampusDateTimeConverter;
 import com.eggcampus.util.result.ReturnResult;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.*;
-import org.springframework.test.context.ActiveProfiles;
 
 import java.util.Map;
 
@@ -17,7 +16,7 @@ import java.util.Map;
  * @author 黄磊
  */
 @SuppressWarnings("DataFlowIssue")
-@EnableDateTimeConverter
+@EnableEggCampusDateTimeConverter
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class DateTimeConverterTests {
 

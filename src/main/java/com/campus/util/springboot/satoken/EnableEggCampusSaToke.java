@@ -1,4 +1,4 @@
-package com.campus.util.springboot.seata;
+package com.campus.util.springboot.satoken;
 
 import org.springframework.context.annotation.Import;
 
@@ -10,6 +10,6 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE})
 @Documented
-@Import(SeataConfiguration.class)
-public @interface EnableSeata {
+@Import({SaTokenExceptionHandlerController.class})
+public @interface EnableEggCampusSaToke {
 }

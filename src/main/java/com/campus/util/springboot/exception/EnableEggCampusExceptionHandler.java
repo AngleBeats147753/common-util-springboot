@@ -1,4 +1,4 @@
-package com.campus.util.springboot.datetime;
+package com.campus.util.springboot.exception;
 
 import org.springframework.context.annotation.Import;
 
@@ -10,6 +10,6 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE})
 @Documented
-@Import({DateTimeConfiguration.class})
-public @interface EnableDateTimeConverter {
+@Import({BasicExceptionHandler.class})
+public @interface EnableEggCampusExceptionHandler {
 }
