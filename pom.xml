@@ -17,10 +17,10 @@
         <spring.boot.version>2.7.14</spring.boot.version>
         <spring-cloud.version>2021.0.7</spring-cloud.version>
         <lombok.version>1.18.30</lombok.version>
-        <hutool.version>5.8.25</hutool.version>
-        <mybatis.plus.version>3.5.3.1</mybatis.plus.version>
+        <hutool.version>5.8.27</hutool.version>
+        <mybatis.plus.version>3.5.6</mybatis.plus.version>
         <satoken.version>1.37.0</satoken.version>
-        <seata.version>2.0.0</seata.version>
+        <seata.version>1.8.0</seata.version>
         <eggcampus.common.util.version>0.2.1-SNAPSHOT</eggcampus.common.util.version>
     </properties>
 
