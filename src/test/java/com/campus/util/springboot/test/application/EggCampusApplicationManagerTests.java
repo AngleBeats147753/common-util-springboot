@@ -5,6 +5,7 @@ import com.campus.util.springboot.application.EggCampusApplicationConfiguration;
 import com.campus.util.springboot.application.EggCampusApplicationDTO;
 import com.campus.util.springboot.application.EggCampusApplicationManager;
 import com.eggcampus.util.test.TestUtil;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.aggregator.ArgumentsAccessor;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -22,6 +23,7 @@ public class EggCampusApplicationManagerTests {
 
     private AnnotationConfigApplicationContext context;
 
+    @DisplayName("测试getApplication()")
     @ParameterizedTest(name = "{1}")
     @CsvSource(useHeadersInDisplayName = true, textBlock = """
             caseName, description,          exception

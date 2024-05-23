@@ -1,5 +1,6 @@
 package com.campus.util.springboot.exception;
 
+import com.eggcampus.util.exception.base.AssertionFailedException;
 import com.eggcampus.util.exception.result.NonLoggingManagerException;
 import com.eggcampus.util.exception.result.NonLoggingServiceException;
 import com.eggcampus.util.exception.result.ReturnResultException;
@@ -91,6 +92,14 @@ public class BasicExceptionHandler {
     public ReturnResult handleReturnResultException(ReturnResultException e) {
         log.error("发生业务错误", e);
         return ReturnResult.getFailureReturn(e.getCode(), e.getUserTip(), e.getErrorMessage());
+    }
+
+    /**
+     * 处理断言异常
+     */
+    @ExceptionHandler(value = AssertionFailedException.class)
+    public ReturnResult handleAssertionFailedException(AssertionFailedException e) {
+        return ReturnResult.getFailureReturn(AliErrorCode.USER_ERROR_A0402, e.getMessage());
     }
 
     /**
