@@ -12,6 +12,7 @@ import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -46,6 +47,15 @@ public class BasicExceptionHandler {
     public ReturnResult handlePropertyAccessException(Exception e) {
         log.debug("输入的参数有问题", e);
         return ReturnResult.getFailureReturn(USER_ERROR_A0400, "输入的参数有问题", e.getLocalizedMessage());
+    }
+
+    /**
+     * 请求错误
+     */
+    @ExceptionHandler(value = {HttpRequestMethodNotSupportedException.class})
+    public ReturnResult handleHttpRequestMethodNotSupportedException(HttpRequestMethodNotSupportedException e) {
+        log.debug("请求方式不支持", e);
+        return ReturnResult.getFailureReturn(AliErrorCode.USER_ERROR_A0400, "请求方式不支持", e.getLocalizedMessage());
     }
 
     /**
@@ -99,6 +109,7 @@ public class BasicExceptionHandler {
      */
     @ExceptionHandler(value = AssertionFailedException.class)
     public ReturnResult handleAssertionFailedException(AssertionFailedException e) {
+        log.debug("断言错误", e);
         return ReturnResult.getFailureReturn(AliErrorCode.USER_ERROR_A0402, e.getMessage());
     }
 
