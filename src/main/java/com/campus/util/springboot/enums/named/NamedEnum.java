@@ -15,4 +15,8 @@ public interface NamedEnum {
      */
     @JsonValue
     String getName();
+
+    default <T extends NamedEnum> T convert(Class<T> enumClass) {
+        return Name2EnumCache.get(enumClass, getName());
+    }
 }

@@ -25,12 +25,13 @@ public class Name2EnumCache {
         });
     }
 
-    public static NamedEnum get(Class<? extends NamedEnum> enumClass, String name) {
+    @SuppressWarnings("unchecked")
+    public static <T extends NamedEnum> T get(Class<T> enumClass, String name) {
         if (!NAME_2_ENUM_MAP.containsKey(enumClass.getName())) {
             add(enumClass);
         }
         Map<String, NamedEnum> map = NAME_2_ENUM_MAP.get(enumClass.getName());
-        NamedEnum result = map.get(name);
+        T result = (T) map.get(name);
         if (result == null) {
             throw new IllegalArgumentException("无法将字符串转换为枚举，类型<%s>，字符串<%s>".formatted(enumClass.getName(), name));
         }
