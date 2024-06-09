@@ -8,14 +8,14 @@ import org.hibernate.validator.constraints.Range;
 import javax.validation.constraints.NotNull;
 
 /**
+ * 传统的偏移分页查询参数
+ *
  * @author 黄磊
- * @deprecated 请使用{@link OffsetPageQo}代替
  **/
-@Deprecated(since = "0.3.0")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class PageQuery {
+public class PageQo {
     @NotNull(message = "currentPage不能为空")
     @Range(min = 1, max = 100, message = "页数应该在1~100之间")
     private Integer currentPage = 1;

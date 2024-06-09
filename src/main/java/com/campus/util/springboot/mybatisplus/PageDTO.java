@@ -39,6 +39,10 @@ public class PageDTO<T> extends Page<T> implements Serializable {
         super(query.getCurrentPage(), query.getPageSize());
     }
 
+    public PageDTO(PageQo qo) {
+        super(qo.getCurrentPage(), qo.getPageSize());
+    }
+
     public PageDTO(long current, long size, long total, List<T> records) {
         super(current, size, total);
         this.records = records;

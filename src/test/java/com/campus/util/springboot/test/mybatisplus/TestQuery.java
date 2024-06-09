@@ -1,6 +1,6 @@
 package com.campus.util.springboot.test.mybatisplus;
 
-import com.campus.util.springboot.mybatisplus.PageQuery;
+import com.campus.util.springboot.mybatisplus.PageQo;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -11,6 +11,6 @@ import lombok.ToString;
 @Data
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
-public class TestQuery extends PageQuery {
+public class TestQuery extends PageQo {
     private String param1;
 }

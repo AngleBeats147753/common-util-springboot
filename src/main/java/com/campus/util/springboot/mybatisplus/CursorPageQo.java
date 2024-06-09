@@ -8,17 +8,15 @@ import org.hibernate.validator.constraints.Range;
 import javax.validation.constraints.NotNull;
 
 /**
+ * 游标分页查询参数
+ *
  * @author 黄磊
- * @deprecated 请使用{@link OffsetPageQo}代替
  **/
-@Deprecated(since = "0.3.0")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class PageQuery {
-    @NotNull(message = "currentPage不能为空")
-    @Range(min = 1, max = 100, message = "页数应该在1~100之间")
-    private Integer currentPage = 1;
+public class CursorPageQo {
+    private Long cursorId;
 
     @NotNull(message = "pageSize不能为空")
     @Range(min = 1, max = 100, message = "一页元素数量应该在1~100之间")
