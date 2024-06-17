@@ -1,6 +1,7 @@
 package com.campus.util.springboot.log;
 
 import org.slf4j.MDC;
+import org.springframework.lang.Nullable;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,7 +25,7 @@ public class TraceIdInterceptor implements HandlerInterceptor {
     }
 
     @Override
-    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, @Nullable Exception ex) {
         TraceIdUtil.removeTraceId();
         MDC.clear();
     }

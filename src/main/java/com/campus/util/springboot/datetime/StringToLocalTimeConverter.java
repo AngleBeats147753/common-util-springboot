@@ -6,10 +6,6 @@ import org.springframework.core.convert.converter.Converter;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
-/**
- * @author chenzhefan
- * @date 2024/2/7 6:00 PM
- */
 public class StringToLocalTimeConverter implements Converter<String, LocalTime> {
     private final DateTimeFormatter formatter;
 

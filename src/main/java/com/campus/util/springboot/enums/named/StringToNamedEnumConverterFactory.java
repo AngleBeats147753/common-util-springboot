@@ -37,7 +37,7 @@ public class StringToNamedEnumConverterFactory implements ConverterFactory<Strin
 
         @Override
         public T convert(@NotNull String source) {
-            return (T) Name2EnumCache.get(enumType, source);
+            return Name2EnumCache.get(enumType, source);
         }
     }
 }

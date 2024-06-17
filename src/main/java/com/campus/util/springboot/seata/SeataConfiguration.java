@@ -39,7 +39,10 @@ public class SeataConfiguration implements WebMvcConfigurer {
     public static class SeataIdRequestInterceptor implements RequestInterceptor {
         @Override
         public void apply(RequestTemplate template) {
-            template.header(SeataIdUtil.HEADER_NAME, SeataIdUtil.getXid());
+            String xid = SeataIdUtil.getXid();
+            if (xid != null) {
+                template.header(SeataIdUtil.HEADER_NAME, SeataIdUtil.getXid());
+            }
         }
     }
 

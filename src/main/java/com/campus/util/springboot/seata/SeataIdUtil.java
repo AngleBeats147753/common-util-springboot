@@ -1,6 +1,7 @@
 package com.campus.util.springboot.seata;
 
 import io.seata.core.context.RootContext;
+import org.springframework.lang.Nullable;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -15,6 +16,7 @@ public class SeataIdUtil {
     /**
      * 获取 XID
      */
+    @Nullable
     public static String getXid() {
         return RootContext.getXID();
     }
@@ -22,6 +24,7 @@ public class SeataIdUtil {
     /**
      * 从请求头中获取 XID
      */
+    @Nullable
     public static String getXid(HttpServletRequest request) {
         return request.getHeader(HEADER_NAME);
     }

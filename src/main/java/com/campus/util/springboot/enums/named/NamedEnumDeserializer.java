@@ -26,6 +26,6 @@ public class NamedEnumDeserializer<T extends NamedEnum> extends JsonDeserializer
     @Override
     public T deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
         String name = p.getValueAsString();
-        return (T) Name2EnumCache.get(enumClass, name);
+        return Name2EnumCache.get(enumClass, name);
     }
 }
