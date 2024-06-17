@@ -1,7 +1,6 @@
 package com.campus.util.springboot.log;
 
 import cn.hutool.core.util.IdUtil;
-import lombok.Getter;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -29,6 +28,8 @@ public class TraceIdUtil {
         String traceId = request.getHeader(HEADER_NAME);
         if (traceId == null) {
             traceId = getTraceId();
+        } else {
+            TRACE_ID.set(traceId);
         }
         return traceId;
     }
