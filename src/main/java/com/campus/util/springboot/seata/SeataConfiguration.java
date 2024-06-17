@@ -20,11 +20,17 @@ import javax.servlet.http.HttpServletResponse;
 @Configuration
 @EnableEggCampusFeign
 public class SeataConfiguration implements WebMvcConfigurer {
+    /**
+     * Feign拦截器，用于发送请求前当前将XID放入请求头中
+     */
     @Bean
     public RequestInterceptor seataIdRequestInterceptor() {
         return new SeataIdRequestInterceptor();
     }
 
+    /**
+     * 拦截器，用于处理请求前将XID放入请求头中
+     */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new SeataIdRequestInterceptor1());
@@ -46,6 +52,11 @@ public class SeataConfiguration implements WebMvcConfigurer {
             }
             SeataIdUtil.bind(xid);
             return true;
+        }
+
+        @Override
+        public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+            SeataIdUtil.unbind();
         }
     }
 }
