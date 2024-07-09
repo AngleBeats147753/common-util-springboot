@@ -38,6 +38,12 @@ public class MybatisPlusExceptionHandlerController {
         return ReturnResult.failure(AliErrorCode.USER_ERROR_A0402, e.getLocalizedMessage());
     }
 
+    @ExceptionHandler(value = OutOfPaginationException.class)
+    public ReturnResult handleOutOfPaginationException(OutOfPaginationException e) {
+        log.debug("超出分页范围", e);
+        return ReturnResult.failure(AliErrorCode.USER_ERROR_A0402, e.getLocalizedMessage());
+    }
+
     @ExceptionHandler(value = DatabaseException.class)
     public ReturnResult handleDatabaseException(EggCampusException e) {
         log.error("操作数据库异常", e);

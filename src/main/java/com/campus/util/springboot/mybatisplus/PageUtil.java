@@ -1,5 +1,6 @@
 package com.campus.util.springboot.mybatisplus;
 
+import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.KeyUtil;
 import cn.hutool.crypto.symmetric.SymmetricAlgorithm;
 import cn.hutool.crypto.symmetric.SymmetricCrypto;
@@ -11,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import java.security.SecureRandom;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * @author 黄磊
@@ -49,8 +51,11 @@ public class PageUtil {
      *
      * @param keySeed 密钥种子
      */
+    @SneakyThrows
     public static void setCrypto(String keySeed) {
-        SecureRandom secureRandom = new SecureRandom(keySeed.getBytes());
+        // 使用SHA1PRNG来生成固定的密钥
+        SecureRandom secureRandom = SecureRandom.getInstance("SHA1PRNG");
+        secureRandom.setSeed(keySeed.getBytes());
         byte[] key = KeyUtil.generateKey(SymmetricAlgorithm.AES.getValue(), -1, secureRandom).getEncoded();
         CRYPTO_AGENT = new SymmetricCrypto(SymmetricAlgorithm.AES, key);
         log.debug("成功设置加密解密器");
@@ -78,5 +83,29 @@ public class PageUtil {
     public static JsonNode decode(String cursorId) {
         String content = CRYPTO_AGENT.decryptStr(cursorId);
         return OBJECT_MAPPER.readTree(content);
+    }
+
+    /**
+     * 解密游标id
+     *
+     * @param qo 游标查询
+     * @return 解密后的参数
+     */
+    public static JsonNode decode(CursorPageQo qo) {
+        if (StrUtil.isEmpty(qo.getCursorId())) {
+            return OBJECT_MAPPER.createObjectNode();
+        }
+        return decode(qo.getCursorId());
+    }
+
+    /**
+     * 断言游标分页查询还未到最后
+     *
+     * @param qo 游标查询
+     */
+    public static void assertNotAtEnd(CursorPageQo qo) {
+        if (Objects.nonNull(qo.getCursorId()) && qo.getCursorId().equals(CursorPageDto.END_CURSOR_ID)) {
+            throw new OutOfPaginationException("查询已到最后");
+        }
     }
 }
