@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.eggcampus.util</groupId>
     <artifactId>util-spring-boot-starter</artifactId>
-    <version>0.2.1-SNAPSHOT</version>
+    <version>0.3.1-SNAPSHOT</version>
     <name>common-util-springboot</name>
     <description>common-util-springboot</description>
 
@@ -21,7 +21,7 @@
         <mybatis.plus.version>3.5.6</mybatis.plus.version>
         <satoken.version>1.37.0</satoken.version>
         <seata.version>1.8.0</seata.version>
-        <eggcampus.common.util.version>0.2.1-SNAPSHOT</eggcampus.common.util.version>
+        <eggcampus.common.util.version>0.3.1-SNAPSHOT</eggcampus.common.util.version>
     </properties>
 
     <dependencyManagement>
@@ -106,6 +106,11 @@
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-json</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-crypto</artifactId>
         </dependency>
 
         <dependency>

@@ -19,7 +19,7 @@ public class SaTokenExceptionHandlerController {
     @ExceptionHandler(value = NotLoginException.class)
     public ReturnResult handleNotLoginException(NotLoginException e) {
         log.debug("用户未登录", e);
-        return ReturnResult.getFailureReturn(AliErrorCode.USER_ERROR_A0301, "您未登录，请先进行登录");
+        return ReturnResult.failure(AliErrorCode.USER_ERROR_A0301, "您未登录，请先进行登录");
     }
 
     /**
@@ -28,6 +28,6 @@ public class SaTokenExceptionHandlerController {
     @ExceptionHandler(value = SaTokenException.class)
     public ReturnResult handleNotLoginException(SaTokenException e) {
         log.debug("账号处理异常", e);
-        return ReturnResult.getFailureReturn(AliErrorCode.USER_ERROR_A0300, e.getMessage());
+        return ReturnResult.failure(AliErrorCode.USER_ERROR_A0300, e.getMessage());
     }
 }

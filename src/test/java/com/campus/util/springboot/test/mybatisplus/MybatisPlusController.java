@@ -1,7 +1,7 @@
 package com.campus.util.springboot.test.mybatisplus;
 
-import com.campus.util.springboot.mybatisplus.PageQo;
-import com.campus.util.springboot.mybatisplus.PageDTO;
+import com.campus.util.springboot.mybatisplus.OffsetPageQo;
+import com.campus.util.springboot.mybatisplus.OffsetPageDto;
 import com.eggcampus.util.result.ReturnResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,19 +14,19 @@ import java.util.List;
 @RestController
 public class MybatisPlusController {
     @GetMapping("/mybatis-plus/page-query1")
-    public ReturnResult pageQuery1(PageQo query) {
-        return ReturnResult.getSuccessReturn(query);
+    public ReturnResult pageQuery1(OffsetPageQo query) {
+        return ReturnResult.success(query);
     }
 
     @GetMapping("/mybatis-plus/page-query2")
     public ReturnResult pageQuery2(TestQuery query) {
-        return ReturnResult.getSuccessReturn(query);
+        return ReturnResult.success(query);
     }
 
     @GetMapping("/mybatis-plus/page-dto1")
-    public ReturnResult pageDTO1(PageQo query) {
-        PageDTO<Object> dto = new PageDTO<>(query);
+    public ReturnResult pageDTO1(OffsetPageQo query) {
+        OffsetPageDto<Object> dto = new OffsetPageDto<>(query);
         dto.setRecords(List.of("123", "321"));
-        return ReturnResult.getSuccessReturn(dto);
+        return ReturnResult.success(dto);
     }
 }

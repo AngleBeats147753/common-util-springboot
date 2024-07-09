@@ -20,6 +20,6 @@ public class FeignExceptionHandlerController {
     public ReturnResult handleFeignException(Exception e) {
         log.error("调用第二方服务异常", e);
         // 与第二方交互的时候可能会传输密码等隐私信息，所以为了避免隐私的泄漏，这里不返回具体的异常信息
-        return ReturnResult.getFailureReturn(AliErrorCode.SERVICE_ERROR_C0001, ErrorMessage.UNKNOWN_TIP,"调用第二方服务异常");
+        return ReturnResult.failure(AliErrorCode.SERVICE_ERROR_C0001, ErrorMessage.UNKNOWN_TIP,"调用第二方服务异常");
     }
 }

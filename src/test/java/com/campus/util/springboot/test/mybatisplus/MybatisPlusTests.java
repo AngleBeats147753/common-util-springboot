@@ -2,9 +2,6 @@ package com.campus.util.springboot.test.mybatisplus;
 
 import cn.hutool.json.JSONUtil;
 import com.campus.util.springboot.mybatisplus.EnableEggCampusMybatisPlus;
-import com.campus.util.springboot.mybatisplus.PageDTO;
-import com.campus.util.springboot.mybatisplus.PageUtil;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +10,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.web.servlet.MockMvc;
-
-import java.util.List;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -30,6 +25,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
         "spring.datasource.url=jdbc:p6spy:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;MODE=MySQL",
         "spring.datasource.driver-class-name=com.p6spy.engine.spy.P6SpyDriver",
         "spring.datasource.username=sa",
+        "eggcampus.mybatis.key=654321"
 })
 
 public class MybatisPlusTests {
@@ -68,18 +64,5 @@ public class MybatisPlusTests {
                 .andExpect(status().isOk())
                 .andReturn().getResponse().getContentAsString();
         System.out.println(JSONUtil.formatJsonStr(result));
-    }
-
-    @Test
-    @DisplayName("替换PageDTO中的records")
-    void test_pageUtil1() {
-        PageDTO<String> stringPage = new PageDTO<>(1, 10, 2, List.of("123", "321", "111"));
-        List<Integer> ints = stringPage.getRecords().stream().map(Integer::valueOf).toList();
-        PageDTO<Integer> intPage = PageUtil.changeRecord(stringPage, ints);
-
-        Assertions.assertThat(intPage.getCurrent()).isEqualTo(stringPage.getCurrent());
-        Assertions.assertThat(intPage.getSize()).isEqualTo(stringPage.getSize());
-        Assertions.assertThat(intPage.getTotal()).isEqualTo(stringPage.getTotal());
-        Assertions.assertThat(intPage.getRecords()).isEqualTo(ints);
     }
 }

@@ -15,7 +15,7 @@ import javax.validation.constraints.NotNull;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class PageQo {
+public class OffsetPageQo {
     @NotNull(message = "currentPage不能为空")
     @Range(min = 1, max = 100, message = "页数应该在1~100之间")
     private Integer currentPage = 1;

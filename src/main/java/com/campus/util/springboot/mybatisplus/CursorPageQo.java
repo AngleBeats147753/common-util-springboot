@@ -16,7 +16,7 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CursorPageQo {
-    private Long cursorId;
+    private String cursorId;
 
     @NotNull(message = "pageSize不能为空")
     @Range(min = 1, max = 100, message = "一页元素数量应该在1~100之间")

@@ -11,39 +11,35 @@ import java.util.List;
 /**
  * @author 黄磊
  **/
-public class PageDTO<T> extends Page<T> implements Serializable {
+public class OffsetPageDto<T> extends Page<T> implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
 
-    public PageDTO() {
+    public OffsetPageDto() {
     }
 
-    public PageDTO(long current, long size) {
+    public OffsetPageDto(long current, long size) {
         super(current, size);
     }
 
-    public PageDTO(long current, long size, long total) {
+    public OffsetPageDto(long current, long size, long total) {
         super(current, size, total);
     }
 
-    public PageDTO(long current, long size, boolean searchCount) {
+    public OffsetPageDto(long current, long size, boolean searchCount) {
         super(current, size, searchCount);
     }
 
-    public PageDTO(long current, long size, long total, boolean searchCount) {
+    public OffsetPageDto(long current, long size, long total, boolean searchCount) {
         super(current, size, total, searchCount);
     }
 
-    public PageDTO(PageQuery query) {
-        super(query.getCurrentPage(), query.getPageSize());
-    }
-
-    public PageDTO(PageQo qo) {
+    public OffsetPageDto(OffsetPageQo qo) {
         super(qo.getCurrentPage(), qo.getPageSize());
     }
 
-    public PageDTO(long current, long size, long total, List<T> records) {
+    public OffsetPageDto(long current, long size, long total, List<T> records) {
         super(current, size, total);
         this.records = records;
     }

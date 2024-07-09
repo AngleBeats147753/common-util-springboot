@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Collection;
+
 /**
  * 游标分页返回数据
  *
@@ -12,10 +14,10 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CursorPageDto {
-    private Object records;
+public class CursorPageDto<T> {
+    private Collection<T> records;
     /**
      * 请求下一页时所需要的cursorId
      */
-    private Long next;
+    private String next;
 }

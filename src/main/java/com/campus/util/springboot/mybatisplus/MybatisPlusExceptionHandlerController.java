@@ -26,7 +26,7 @@ public class MybatisPlusExceptionHandlerController {
     @ExceptionHandler(value = OptimisticLockException.class)
     public ReturnResult handleOptimisticLockException(OptimisticLockException e) {
         log.error("乐观锁重试次数超过上限", e);
-        return ReturnResult.getFailureReturn(AliErrorCode.SYSTEM_ERROR_B0102, ErrorMessage.BUSY_TIP, e.getLocalizedMessage());
+        return ReturnResult.failure(AliErrorCode.SYSTEM_ERROR_B0102, ErrorMessage.BUSY_TIP, e.getLocalizedMessage());
     }
 
     /**
@@ -35,18 +35,18 @@ public class MybatisPlusExceptionHandlerController {
     @ExceptionHandler(value = NotFoundException.class)
     public ReturnResult handleNotFoundException(NotFoundException e) {
         log.debug("未找到数据", e);
-        return ReturnResult.getFailureReturn(AliErrorCode.USER_ERROR_A0402, e.getLocalizedMessage());
+        return ReturnResult.failure(AliErrorCode.USER_ERROR_A0402, e.getLocalizedMessage());
     }
 
     @ExceptionHandler(value = DatabaseException.class)
     public ReturnResult handleDatabaseException(EggCampusException e) {
         log.error("操作数据库异常", e);
-        return ReturnResult.getFailureReturn(AliErrorCode.SYSTEM_ERROR_B0001, ErrorMessage.UNKNOWN_TIP, e.getLocalizedMessage());
+        return ReturnResult.failure(AliErrorCode.SYSTEM_ERROR_B0001, ErrorMessage.UNKNOWN_TIP, e.getLocalizedMessage());
     }
 
     @ExceptionHandler(value = MybatisPlusException.class)
     public ReturnResult handleMybatisPlusException(MybatisPlusException e) {
         log.error("操作数据库异常", e);
-        return ReturnResult.getFailureReturn(AliErrorCode.SYSTEM_ERROR_B0001, e.getLocalizedMessage(), e.getLocalizedMessage());
+        return ReturnResult.failure(AliErrorCode.SYSTEM_ERROR_B0001, e.getLocalizedMessage(), e.getLocalizedMessage());
     }
 }
