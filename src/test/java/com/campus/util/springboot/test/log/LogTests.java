@@ -25,7 +25,8 @@ import java.util.regex.Pattern;
 @SuppressWarnings("DataFlowIssue")
 @EnableEggCampusLog
 @EnableEggCampusExceptionHandler
-@SpringBootTest(properties = "logging.pattern.level=%5p [%X{traceId}]",
+@SpringBootTest(properties = {"logging.pattern.level=%5p [%X{traceId}]",
+        "eggcampus.exception.print-error-message=true"},
         webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @Import(LogTestController.class)
 public class LogTests {

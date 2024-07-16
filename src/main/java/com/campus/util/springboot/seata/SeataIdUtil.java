@@ -1,6 +1,7 @@
 package com.campus.util.springboot.seata;
 
 import io.seata.core.context.RootContext;
+import io.seata.integration.http.XidResource;
 import org.springframework.lang.Nullable;
 
 import javax.servlet.http.HttpServletRequest;
@@ -39,7 +40,7 @@ public class SeataIdUtil {
     /**
      * 解绑 XID
      */
-    public static void unbind() {
-        RootContext.unbind();
+    public static void cleanXid(@Nullable String xid) {
+        XidResource.cleanXid(xid);
     }
 }
