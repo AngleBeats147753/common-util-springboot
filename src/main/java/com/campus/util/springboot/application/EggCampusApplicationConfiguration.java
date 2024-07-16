@@ -4,10 +4,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.EnvironmentAware;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.core.env.Environment;
 import org.springframework.lang.NonNull;
-import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 
@@ -15,7 +15,7 @@ import javax.annotation.Resource;
  * @author 黄磊
  */
 @Slf4j
-@Component
+@Configuration
 @EnableConfigurationProperties(EggCampusApplicationProperties.class)
 public class EggCampusApplicationConfiguration implements EnvironmentAware {
     @Resource
@@ -26,6 +26,11 @@ public class EggCampusApplicationConfiguration implements EnvironmentAware {
     @Primary
     public EggCampusApplicationManager eggCampusApplicationManager() {
         return new EggCampusApplicationManagerImpl(eggCampusApplicationProperties, environment);
+    }
+
+    @Bean
+    public ApplicationStatusManager eggCampusApplicationStatusManager() {
+        return new ApplicationStatusManagerImpl(eggCampusApplicationManager());
     }
 
     @Override

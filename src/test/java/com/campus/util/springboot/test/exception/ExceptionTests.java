@@ -16,7 +16,9 @@ import org.springframework.http.*;
  */
 @SuppressWarnings("DataFlowIssue")
 @EnableEggCampusExceptionHandler
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, properties = {
+        "eggcampus.exception.print-error-message=true",
+})
 @Import(ExceptionTestController.class)
 public class ExceptionTests {
 
@@ -99,7 +101,7 @@ public class ExceptionTests {
         ResponseEntity<ReturnResult> response = testRestTemplate.postForEntity("/exception/bindException", requestEntity, ReturnResult.class);
         Assertions.assertThat(HttpStatus.OK).isEqualTo(response.getStatusCode());
         System.out.println(response.getBody());
-        Assertions.assertThat(response.getBody().getMessage()).contains("param1 : param1不能为空");
+        Assertions.assertThat(response.getBody().getErrorMessage()).contains("param1 : param1不能为空");
     }
 
     @Test

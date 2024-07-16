@@ -25,7 +25,7 @@ public class SeataConfiguration implements WebMvcConfigurer {
      */
     @Bean
     public RequestInterceptor seataIdRequestInterceptor() {
-        return new SeataIdRequestInterceptor();
+        return new SendSeataIdInterceptor();
     }
 
     /**
@@ -33,10 +33,10 @@ public class SeataConfiguration implements WebMvcConfigurer {
      */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new SeataIdRequestInterceptor1());
+        registry.addInterceptor(new ReceiveSeataIdInterceptor());
     }
 
-    public static class SeataIdRequestInterceptor implements RequestInterceptor {
+    public static class SendSeataIdInterceptor implements RequestInterceptor {
         @Override
         public void apply(RequestTemplate template) {
             String xid = SeataIdUtil.getXid();
@@ -46,7 +46,7 @@ public class SeataConfiguration implements WebMvcConfigurer {
         }
     }
 
-    public static class SeataIdRequestInterceptor1 implements HandlerInterceptor {
+    public static class ReceiveSeataIdInterceptor implements HandlerInterceptor {
         @Override
         public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
             String xid = SeataIdUtil.getXid(request);

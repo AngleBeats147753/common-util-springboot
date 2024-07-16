@@ -20,18 +20,23 @@ import org.springframework.web.method.annotation.MethodArgumentTypeMismatchExcep
 
 import java.util.concurrent.RejectedExecutionException;
 
+import static com.campus.util.springboot.exception.ErrorMessage.*;
 import static com.eggcampus.util.result.AliErrorCode.USER_ERROR_A0400;
 
 
 /**
+ * 处理Spring MVC异常的处理器
+ *
  * @author 黄磊
  * @since 2022/6/16
  **/
 @Slf4j
 @RestControllerAdvice
-public class BasicExceptionHandler {
-    private static final String UNKNOWN_TIP = "系统出现未知错误，请联系管理员";
-    private static final String BUSY_TIP = "系统繁忙中，请10分钟后再尝试";
+public class MvcExceptionHandler extends ExceptionHandlerParent {
+
+    public MvcExceptionHandler(ExceptionProperties properties) {
+        super(properties);
+    }
 
     /**
      * 输入参数异常
@@ -46,7 +51,7 @@ public class BasicExceptionHandler {
             HttpMessageNotReadableException.class, HttpMessageConversionException.class})
     public ReturnResult handlePropertyAccessException(Exception e) {
         log.debug("输入的参数有问题", e);
-        return ReturnResult.failure(USER_ERROR_A0400, "输入的参数有问题", e.getLocalizedMessage());
+        return getReturnResult(USER_ERROR_A0400, PARAMETER_ERROR, e.getLocalizedMessage());
     }
 
     /**
@@ -55,7 +60,7 @@ public class BasicExceptionHandler {
     @ExceptionHandler(value = {HttpRequestMethodNotSupportedException.class})
     public ReturnResult handleHttpRequestMethodNotSupportedException(HttpRequestMethodNotSupportedException e) {
         log.debug("请求方式不支持", e);
-        return ReturnResult.failure(AliErrorCode.USER_ERROR_A0400, "请求方式不支持", e.getLocalizedMessage());
+        return getReturnResult(AliErrorCode.USER_ERROR_A0400, REQUEST_METHOD_NOT_SUPPORTED, e.getLocalizedMessage());
     }
 
     /**
@@ -74,7 +79,7 @@ public class BasicExceptionHandler {
             }
         });
         log.debug("输入的参数有问题", e);
-        return ReturnResult.failure(USER_ERROR_A0400, stringBuilder.toString());
+        return getReturnResult(USER_ERROR_A0400, PARAMETER_ERROR, stringBuilder.toString());
     }
 
     /**
@@ -83,7 +88,7 @@ public class BasicExceptionHandler {
     @ExceptionHandler(value = RejectedExecutionException.class)
     public ReturnResult handleRejectedExecutionException(RejectedExecutionException e) {
         log.error("线程池队列溢出", e);
-        return ReturnResult.failure(AliErrorCode.SYSTEM_ERROR_B0315, "系统繁忙中，请10分钟后再尝试", e.getMessage());
+        return getReturnResult(AliErrorCode.SYSTEM_ERROR_B0315, BUSY, e.getMessage());
     }
 
     /**
@@ -92,7 +97,7 @@ public class BasicExceptionHandler {
     @ExceptionHandler(value = {NonLoggingManagerException.class, NonLoggingServiceException.class})
     public ReturnResult handleNonReturnResultException(ReturnResultException e) {
         log.debug("发生业务错误", e);
-        return ReturnResult.failure(e.getCode(), e.getUserTip(), e.getErrorMessage());
+        return getReturnResult(e.getCode(), e.getUserTip(), e.getErrorMessage());
     }
 
     /**
@@ -101,7 +106,7 @@ public class BasicExceptionHandler {
     @ExceptionHandler(value = ReturnResultException.class)
     public ReturnResult handleReturnResultException(ReturnResultException e) {
         log.error("发生业务错误", e);
-        return ReturnResult.failure(e.getCode(), e.getUserTip(), e.getErrorMessage());
+        return getReturnResult(e.getCode(), e.getUserTip(), e.getErrorMessage());
     }
 
     /**
@@ -110,7 +115,7 @@ public class BasicExceptionHandler {
     @ExceptionHandler(value = AssertionFailedException.class)
     public ReturnResult handleAssertionFailedException(AssertionFailedException e) {
         log.debug("断言错误", e);
-        return ReturnResult.failure(AliErrorCode.USER_ERROR_A0402, e.getMessage());
+        return getReturnResult(AliErrorCode.USER_ERROR_A0402, e.getMessage());
     }
 
     /**
@@ -119,6 +124,6 @@ public class BasicExceptionHandler {
     @ExceptionHandler(value = Throwable.class)
     public ReturnResult handleThrowable(Throwable e) {
         log.error("发生未知错误", e);
-        return ReturnResult.failure(AliErrorCode.SYSTEM_ERROR_B0001, "系统出现未知错误，请联系管理员", e.getMessage());
+        return getReturnResult(AliErrorCode.SYSTEM_ERROR_B0001, UNKNOWN, e.getMessage());
     }
 }

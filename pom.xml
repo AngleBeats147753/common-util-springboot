@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.eggcampus.util</groupId>
     <artifactId>util-spring-boot-starter</artifactId>
-    <version>0.3.1-SNAPSHOT</version>
+    <version>0.3.2-SNAPSHOT</version>
     <name>common-util-springboot</name>
     <description>common-util-springboot</description>
 

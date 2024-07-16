@@ -16,7 +16,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
 
 import javax.annotation.Resource;
 import java.io.IOException;
@@ -28,7 +27,6 @@ import java.lang.reflect.Type;
 @Slf4j
 @Configuration
 @EnableFeignClients
-@Import(FeignExceptionHandlerController.class)
 public class FeignConfiguration {
     @Resource
     private ObjectMapper objectMapper;
@@ -62,7 +60,7 @@ public class FeignConfiguration {
                 log.error("解析Feign异常信息失败", exception);
                 message = exception.getLocalizedMessage();
             }
-            return new FeignException(AliErrorCode.SERVICE_ERROR_C0001, ErrorMessage.UNKNOWN_TIP, message);
+            return new FeignException(AliErrorCode.SERVICE_ERROR_C0001, ErrorMessage.UNKNOWN, message);
         }
     }
 

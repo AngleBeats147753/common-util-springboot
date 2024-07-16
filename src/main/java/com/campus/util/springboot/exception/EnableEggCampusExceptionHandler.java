@@ -10,6 +10,6 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE})
 @Documented
-@Import({BasicExceptionHandler.class})
+@Import(ExceptionConfiguration.class)
 public @interface EnableEggCampusExceptionHandler {
 }
