@@ -20,7 +20,7 @@ public class ExceptionHandlerParent {
     }
 
     protected ReturnResult getReturnResult(AliErrorCode errorCode, String userTip, String errorMessage) {
-        if (properties.isPrintErrorMessage()) {
+        if (properties.isReturnErrorMessage()) {
             return ReturnResult.failure(errorCode, userTip, errorMessage);
         } else {
             return ReturnResult.failure(errorCode, userTip);

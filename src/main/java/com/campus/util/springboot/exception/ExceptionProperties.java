@@ -9,5 +9,5 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Data
 @ConfigurationProperties("eggcampus.exception")
 public class ExceptionProperties {
-    private boolean printErrorMessage = false;
+    private boolean returnErrorMessage = false;
 }

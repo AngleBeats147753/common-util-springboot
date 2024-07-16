@@ -17,7 +17,7 @@ import org.springframework.http.*;
 @SuppressWarnings("DataFlowIssue")
 @EnableEggCampusExceptionHandler
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, properties = {
-        "eggcampus.exception.print-error-message=true",
+        "eggcampus.exception.return-error-message=true",
 })
 @Import(ExceptionTestController.class)
 public class ExceptionTests {
