@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.lang.Nullable;
 
 import java.security.SecureRandom;
 import java.util.List;
@@ -89,11 +90,12 @@ public class PageUtil {
      * 解密游标id
      *
      * @param qo 游标查询
-     * @return 解密后的参数。假如要解密的游标id为null，则返回NullNode，而不是null
+     * @return 解密后的参数。假如要解密的游标id为null，则返回null
      */
+    @Nullable
     public static JsonNode decode(CursorPageQo qo) {
         if (StrUtil.isEmpty(qo.getCursorId())) {
-            return OBJECT_MAPPER.nullNode();
+            return null;
         }
         return decode(qo.getCursorId());
     }
