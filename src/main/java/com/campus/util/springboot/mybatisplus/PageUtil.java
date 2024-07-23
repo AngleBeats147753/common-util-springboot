@@ -89,11 +89,11 @@ public class PageUtil {
      * 解密游标id
      *
      * @param qo 游标查询
-     * @return 解密后的参数
+     * @return 解密后的参数。假如要解密的游标id为null，则返回NullNode，而不是null
      */
     public static JsonNode decode(CursorPageQo qo) {
         if (StrUtil.isEmpty(qo.getCursorId())) {
-            return OBJECT_MAPPER.createObjectNode();
+            return OBJECT_MAPPER.nullNode();
         }
         return decode(qo.getCursorId());
     }
