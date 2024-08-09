@@ -8,11 +8,11 @@ import com.eggcampus.util.exception.database.OptimisticLockException;
 /**
  * 旦晓园团队自定义 Service 实现类
  * <p>
+ *
  * 对于ServiceImpl的方法进行了以下修改
- *    <ul>
- *        <li>修改了单个对象插入/修改的update、updateById和saveOrUpdate方法。假如没有行受影响，那么抛出异常，而不是返回false</li>
- *    </ul>
- * </p>
+ * <ul>
+ *     <li>修改了单个对象插入/修改的update、updateById和saveOrUpdate方法。假如没有行受影响，那么抛出异常，而不是返回false</li>
+ * </ul>
  *
  * @author 黄磊
  */

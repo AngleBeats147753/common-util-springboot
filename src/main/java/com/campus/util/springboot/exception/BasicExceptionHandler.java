@@ -36,10 +36,10 @@ public class BasicExceptionHandler {
     /**
      * 输入参数异常
      * <p>
-     * MethodArgumentTypeMismatchException是参数类型不匹配时的异常。通过param、application/x-www-form-urlencoded类型请求体传递时都可能发生</br>
-     * MissingServletRequestParameterException是使用缺少参数时的异常。通过param、application/x-www-form-urlencoded类型请求体传递时都可能发生</br>
-     * HttpMessageNotReadableException是请求体数据存在问题时的异常。application/json类型请求体类型不对，或者请求体结构不正确时都可能发生</br>
-     * HttpMessageConversionException是请求数据转换存在问题时的异常。没有相应的Converter的时都可能发生</br>
+     * MethodArgumentTypeMismatchException是参数类型不匹配时的异常。通过param、application/x-www-form-urlencoded类型请求体传递时都可能发生<br>
+     * MissingServletRequestParameterException是使用缺少参数时的异常。通过param、application/x-www-form-urlencoded类型请求体传递时都可能发生<br>
+     * HttpMessageNotReadableException是请求体数据存在问题时的异常。application/json类型请求体类型不对，或者请求体结构不正确时都可能发生<br>
+     * HttpMessageConversionException是请求数据转换存在问题时的异常。没有相应的Converter的时都可能发生<br>
      * </p>
      */
     @ExceptionHandler(value = {MethodArgumentTypeMismatchException.class, MissingServletRequestParameterException.class,
